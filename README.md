@@ -13,6 +13,11 @@ Usage
 * `toJavaDateFormatString`: Translates the momentjs format to a java date format.
   > e.g.: `moment().toJavaDateFormatString("DD.MM.YYYY")` will return `dd.MM.yyyy`
 
+Installation
+============
+Installation is possible with `npm install moment-jdateformatparser`
+
+
 License
 =======
 moment-jdateparser is freely distributable under the terms of the MIT license.
