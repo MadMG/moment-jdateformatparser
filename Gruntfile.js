@@ -20,6 +20,21 @@ module.exports = function (grunt) {
       }
     },
 
+    uglify: {
+      options: {
+        preserveComments: 'some'
+      },
+
+      target: {
+        files: [
+          {
+            src: 'moment-jdateformatparser.js',
+            dest: 'moment-jdateformatparser.min.js'
+          }
+        ]
+      }
+    },
+
     watch: {
       files: ['test/**/*.js', 'test/**/*.html', '*.js'],
       tasks: ['qunit']
@@ -30,11 +45,14 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('lint_tasks', ['jshint']);
   grunt.registerTask('lint', 'JavaScript Code Linting', function () {
     grunt.task.run('lint_tasks');
   });
+
+  grunt.registerTask('minify', ['uglify']);
 
   grunt.registerTask('default', ['qunit']);
 
