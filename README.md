@@ -7,11 +7,14 @@ We took the structure graciously from <https://github.com/niwibe/moment-tokens> 
 
 Usage
 =====
-* `formatWithJavaDateFormat`: Formats the moment with a java date format.
-  > e.g.: `moment("2013-12-24 14:30").formatWithJavaDateFormat("dd.MM.yyyy")` will return `24.12.2013`
+* `formatWithJDF`: Formats the moment with a java date format.
+  > e.g.: `moment("2013-12-24 14:30").formatWithJDF("dd.MM.yyyy")` will return `24.12.2013`
 
-* `toJavaDateFormatString`: Translates the momentjs format to a java date format.
-  > e.g.: `moment().toJavaDateFormatString("DD.MM.YYYY")` will return `dd.MM.yyyy`
+* `toMomentFormatString`: Translates the java date format to a momentjs format.
+  > e.g.: `moment().toMomentFormatString("dd.MM.yyyy")` will return `DD.MM.YYYY`
+
+* `toJDFString`: Translates the momentjs format to a java date format.
+  > e.g.: `moment().toJDFString("DD.MM.YYYY")` will return `dd.MM.yyyy`
 
 Installation
 ============

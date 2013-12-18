@@ -166,27 +166,38 @@
   moment.fn.__translateJavaFormat = translateFormat;
 
   /**
-   * Format the moment with the given java date format string
+   * Translates the momentjs format string to a java date format string
    *
-   * @function formatWithJavaDateFormat
+   * @function toJDFString
    * @param formatString
    * @returns {*}
    */
-  moment.fn.formatWithJavaDateFormat = function (formatString) {
+  moment.fn.toMomentFormatString = function (formatString) {
     if (!javaDateFormats[formatString]) {
       javaDateFormats[formatString] = translateFormat(formatString, javaFormatMapping);
     }
-    return this.format(javaDateFormats[formatString]);
+    return javaDateFormats[formatString];
+  };
+
+  /**
+   * Format the moment with the given java date format string
+   *
+   * @function formatWithJDF
+   * @param formatString
+   * @returns {*}
+   */
+  moment.fn.formatWithJDF = function (formatString) {
+    return this.format(this.toMomentFormatString(formatString));
   };
 
   /**
    * Translates the momentjs format string to a java date format string
    *
-   * @function toJavaDateFormatString
+   * @function toJDFString
    * @param formatString
    * @returns {*}
    */
-  moment.fn.toJavaDateFormatString = function (formatString) {
+  moment.fn.toJDFString = function (formatString) {
     if (!momentDateFormats[formatString]) {
       momentDateFormats[formatString] = translateFormat(formatString, momentFormatMapping);
     }

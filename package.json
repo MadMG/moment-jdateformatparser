@@ -1,6 +1,6 @@
 {
   "name": "moment-jdateformatparser",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.",
   "homepage": "https://github.com/MadMG/moment-jdateformatparser",
   "authors": [
@@ -40,7 +40,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-uglify": "~0.2.5"
   },
-  "readme": "#moment-jdateformatparser\r\n\r\n\r\nThis `moment.js` plugin translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.\r\n\r\nWe took the structure graciously from <https://github.com/niwibe/moment-tokens> (thanks a lot!).\r\n\r\nUsage\r\n=====\r\n* `formatWithJavaDateFormat`: Formats the moment with a java date format.\r\n  > e.g.: `moment(\"2013-12-24 14:30\").formatWithJavaDateFormat(\"dd.MM.yyyy\")` will return `24.12.2013`\r\n\r\n* `toJavaDateFormatString`: Translates the momentjs format to a java date format.\r\n  > e.g.: `moment().toJavaDateFormatString(\"DD.MM.YYYY\")` will return `dd.MM.yyyy`\r\n\r\nLicense\r\n=======\r\nmoment-jdateparser is freely distributable under the terms of the MIT license.\r\n\r\nCopyright (c) 2013 Heinz Romirer, Martin Groller\r\n",
+  "readme": "#moment-jdateformatparser\r\n\r\n\r\nThis `moment.js` plugin translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.\r\n\r\nWe took the structure graciously from <https://github.com/niwibe/moment-tokens> (thanks a lot!).\r\n\r\nUsage\r\n=====\r\n* `formatWithJDF`: Formats the moment with a java date format.\r\n  > e.g.: `moment(\"2013-12-24 14:30\").formatWithJDF(\"dd.MM.yyyy\")` will return `24.12.2013`\r\n\r\n* `toJDFString`: Translates the momentjs format to a java date format.\r\n  > e.g.: `moment().toJDFString(\"DD.MM.YYYY\")` will return `dd.MM.yyyy`\r\n\r\nLicense\r\n=======\r\nmoment-jdateparser is freely distributable under the terms of the MIT license.\r\n\r\nCopyright (c) 2013 Heinz Romirer, Martin Groller\r\n",
   "readmeFilename": "README.md",
   "_id": "moment-jdateformatparser@0.0.1",
   "_from": "moment-jdateformatparser@"
