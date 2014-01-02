@@ -20,11 +20,16 @@
       /**
        * The internal **moment.js** date formats cache.
        *
+       * @property momentDateFormats
+       * @type {Object}
        */
           momentDateFormats = {},
 
       /**
-       * The format pattern mapping from Java format to momentjs
+       * The format pattern mapping from Java format to momentjs.
+       * 
+       * @property javaFormatMapping
+       * @type {Object}
        */
           javaFormatMapping = {
         d: 'D',
@@ -63,7 +68,10 @@
       },
 
       /**
-       * The format pattern mapping from Java format to momentjs
+       * The format pattern mapping from Java format to momentjs.
+       * 
+       * @property momentFormatMapping
+       * @type {Object}
        */
           momentFormatMapping = {
         D: 'd',
@@ -105,11 +113,11 @@
 
 
   /**
-   * Translates the java date format string to a momentjs format string
+   * Translates the java date format String to a momentjs format String.
    *
-   * @method translateFormat
-   * @param formatString    The unmodified format string
-   * @param mapping         The date format mapping object
+   * @function translateFormat
+   * @param {String}  formatString    The unmodified format string
+   * @param {Object}  mapping         The date format mapping object
    * @returns {String}
    */
   var translateFormat = function (formatString, mapping) {
@@ -137,14 +145,14 @@
   };
 
   /**
-   * Checks if the substring is a mapped date format pattern and adds it to the result format string
+   * Checks if the substring is a mapped date format pattern and adds it to the result format String.
    *
-   * @method _appendMappedString
-   * @param formatString    The unmodified format string
-   * @param mapping         The date format mapping object
-   * @param beginIndex      The begin index of the continuous format characters
-   * @param currentIndex    The last index of the continuous format characters
-   * @param resultString    The result format string
+   * @function _appendMappedString
+   * @param {String}  formatString    The unmodified format String.
+   * @param {Object}  mapping         The date format mapping Object.
+   * @param {Number}  beginIndex      The begin index of the continuous format characters.
+   * @param {Number}  currentIndex    The last index of the continuous format characters.
+   * @param {String}  resultString    The result format String.
    * @returns {String}
    * @private
    */
@@ -166,11 +174,11 @@
   moment.fn.__translateJavaFormat = translateFormat;
 
   /**
-   * Translates the momentjs format string to a java date format string
+   * Translates the momentjs format String to a java date format String.
    *
    * @function toJDFString
-   * @param formatString
-   * @returns {*}
+   * @param {String}  formatString    The format String to be translated.
+   * @returns {String}
    */
   moment.fn.toMomentFormatString = function (formatString) {
     if (!javaDateFormats[formatString]) {
@@ -180,11 +188,11 @@
   };
 
   /**
-   * Format the moment with the given java date format string
+   * Format the moment with the given java date format String.
    *
    * @function formatWithJDF
-   * @param formatString
-   * @returns {*}
+   * @param {String}  formatString    The format String to be translated.
+   * @returns {String}
    */
   moment.fn.formatWithJDF = function (formatString) {
     return this.format(this.toMomentFormatString(formatString));
@@ -194,8 +202,8 @@
    * Translates the momentjs format string to a java date format string
    *
    * @function toJDFString
-   * @param formatString
-   * @returns {*}
+   * @param {String}  formatString    The format String to be translated.
+   * @returns {String}
    */
   moment.fn.toJDFString = function (formatString) {
     if (!momentDateFormats[formatString]) {
