@@ -6,7 +6,7 @@
     "Martin Groller <madmg82@gmail.com>",
     "Heinz Romirer <h.romirer@gmail.com>"
   ],
-  "main": "moment-jdateformatparser",
+  "main": "moment-jdateformatparser.js",
   "keywords": [
     "moment",
     "java",
