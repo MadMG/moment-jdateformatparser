@@ -18,7 +18,14 @@ Usage
 
 Installation
 ============
+
+NPM
+-------
 Installation is possible with `npm install moment-jdateformatparser`
+
+Bower
+------
+Installation is possible with `bower install moment-jdateformatparser`
 
 
 License
