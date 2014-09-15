@@ -129,7 +129,7 @@
         resultString = "";
 
     for (; i < len; i++) {
-      currentChar = formatString[i];
+      currentChar = formatString.charAt(i);
 
       if (lastChar === null || lastChar !== currentChar) {
         // change detected
