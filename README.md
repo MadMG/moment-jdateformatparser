@@ -1,5 +1,5 @@
 #moment-jdateformatparser
-
+[![Build Status](https://travis-ci.org/MadMG/moment-jdateformatparser.svg?branch=master)](https://travis-ci.org/MadMG/moment-jdateformatparser)
 
 This `moment.js` plugin translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.
 
