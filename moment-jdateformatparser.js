@@ -54,6 +54,7 @@
         SS: 'SSS',
         SSS: 'SSS',
         E: 'ddd',
+        EEE: 'ddd',
         EEEE: 'dddd',
         D: 'DDD',
         w: 'W',
