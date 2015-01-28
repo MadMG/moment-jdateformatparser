@@ -27,7 +27,7 @@
 
       /**
        * The format pattern mapping from Java format to momentjs.
-       * 
+       *
        * @property javaFormatMapping
        * @type {Object}
        */
@@ -70,7 +70,7 @@
 
       /**
        * The format pattern mapping from Java format to momentjs.
-       * 
+       *
        * @property momentFormatMapping
        * @type {Object}
        */
@@ -107,9 +107,13 @@
       };
 
   if (typeof require !== 'undefined' && require !== null) {
-    require(['moment'], function(moment) {
-      hookMoment(moment);
-    });
+    if (module && module.exports) { //Check if the environment is Node.js
+      hookMoment(require('moment')); //if it is, we have to require it different (without the surrounding Array)
+    } else {
+      require(['moment'], function(moment) {
+        hookMoment(moment);
+      });
+    }
   } else {
     hookMoment(this.moment);
   }
