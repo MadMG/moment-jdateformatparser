@@ -63,12 +63,12 @@ test("Weekday checks", function () {
 });
 
 test("Timezone checks", function () {
-  equal(moment("2013-12-24 14:30").formatWithJDF("z"), "+0100", "Check timezone short");
-  equal(moment("2013-12-24 14:30").formatWithJDF("zzzz"), "+01:00", "timezone long");
+  equal(moment("2013-12-24 14:30").utc().formatWithJDF("z"), "+0000", "Check timezone short");
+  equal(moment("2013-12-24 14:30").utc().formatWithJDF("zzzz"), "+00:00", "timezone long");
 
-  equal(moment("2013-12-24 14:30").formatWithJDF("Z"), "+0100", "Check day in year");
+  equal(moment("2013-12-24 14:30").utc().formatWithJDF("Z"), "+0000", "Check day in year");
 
-  equal(moment("2013-01-10 14:30").formatWithJDF("X"), "+0100", "Check week in year");
-  equal(moment("2013-01-10 14:30").formatWithJDF("XX"), "+0100", "Check week in year with leading zero");
-  equal(moment("2013-01-10 14:30").formatWithJDF("XXX"), "+01:00", "Check week in month");
+  equal(moment("2013-01-10 14:30").utc().formatWithJDF("X"), "+0000", "Check week in year");
+  equal(moment("2013-01-10 14:30").utc().formatWithJDF("XX"), "+0000", "Check week in year with leading zero");
+  equal(moment("2013-01-10 14:30").utc().formatWithJDF("XXX"), "+00:00", "Check week in month");
 });
