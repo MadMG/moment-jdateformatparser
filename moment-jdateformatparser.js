@@ -15,7 +15,7 @@
        * @property javaDateFormats
        * @type {Object}
        */
-          javaDateFormats = {},
+      javaDateFormats = {},
 
       /**
        * The internal **moment.js** date formats cache.
@@ -23,7 +23,7 @@
        * @property momentDateFormats
        * @type {Object}
        */
-          momentDateFormats = {},
+      momentDateFormats = {},
 
       /**
        * The format pattern mapping from Java format to momentjs.
@@ -31,7 +31,7 @@
        * @property javaFormatMapping
        * @type {Object}
        */
-          javaFormatMapping = {
+      javaFormatMapping = {
         d: 'D',
         dd: 'DD',
         yy: 'YY',
@@ -74,7 +74,7 @@
        * @property momentFormatMapping
        * @type {Object}
        */
-          momentFormatMapping = {
+      momentFormatMapping = {
         D: 'd',
         DD: 'dd',
         YY: 'yy',
@@ -106,11 +106,62 @@
         E: 'u'
       };
 
+  function hookMoment (moment) {
+    // register as private function (good for testing purposes)
+    moment.fn.__translateJavaFormat = translateFormat;
+
+    /**
+     * Translates the momentjs format String to a java date format String.
+     *
+     * @function toJDFString
+     * @param {String}  formatString    The format String to be translated.
+     * @returns {String}
+     */
+    moment.fn.toMomentFormatString = function (formatString) {
+      if (!javaDateFormats[formatString]) {
+        javaDateFormats[formatString] = translateFormat(formatString, javaFormatMapping);
+      }
+      return javaDateFormats[formatString];
+    };
+
+    /**
+     * Format the moment with the given java date format String.
+     *
+     * @function formatWithJDF
+     * @param {String}  formatString    The format String to be translated.
+     * @returns {String}
+     */
+    moment.fn.formatWithJDF = function (formatString) {
+      return this.format(this.toMomentFormatString(formatString));
+    };
+
+    /**
+     * Translates the momentjs format string to a java date format string
+     *
+     * @function toJDFString
+     * @param {String}  formatString    The format String to be translated.
+     * @returns {String}
+     */
+    moment.fn.toJDFString = function (formatString) {
+      if (!momentDateFormats[formatString]) {
+        momentDateFormats[formatString] = translateFormat(formatString, momentFormatMapping);
+      }
+      return momentDateFormats[formatString];
+    };
+
+
+    if (typeof module !== 'undefined' && module !== null) {
+      module.exports = moment;
+    } else {
+      this.moment = moment;
+    }
+  }
+
   if (typeof require !== 'undefined' && require !== null) {
     if (module && module.exports) { //Check if the environment is Node.js
       hookMoment(require('moment')); //if it is, we have to require it different (without the surrounding Array)
     } else {
-      require(['moment'], function(moment) {
+      require(['moment'], function (moment) {
         hookMoment(moment);
       });
     }
@@ -176,56 +227,5 @@
     }
     return resultString;
   };
-
-  function hookMoment (moment) {
-    // register as private function (good for testing purposes)
-    moment.fn.__translateJavaFormat = translateFormat;
-
-    /**
-     * Translates the momentjs format String to a java date format String.
-     *
-     * @function toJDFString
-     * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
-     */
-    moment.fn.toMomentFormatString = function (formatString) {
-      if (!javaDateFormats[formatString]) {
-        javaDateFormats[formatString] = translateFormat(formatString, javaFormatMapping);
-      }
-      return javaDateFormats[formatString];
-    };
-
-    /**
-     * Format the moment with the given java date format String.
-     *
-     * @function formatWithJDF
-     * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
-     */
-    moment.fn.formatWithJDF = function (formatString) {
-      return this.format(this.toMomentFormatString(formatString));
-    };
-
-    /**
-     * Translates the momentjs format string to a java date format string
-     *
-     * @function toJDFString
-     * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
-     */
-    moment.fn.toJDFString = function (formatString) {
-      if (!momentDateFormats[formatString]) {
-        momentDateFormats[formatString] = translateFormat(formatString, momentFormatMapping);
-      }
-      return momentDateFormats[formatString];
-    };
-
-
-    if (typeof module !== 'undefined' && module !== null) {
-      module.exports = moment;
-    } else {
-      this.moment = moment;
-    }
-  }
 
 }).call(this);
