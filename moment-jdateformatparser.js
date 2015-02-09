@@ -158,7 +158,7 @@
   }
 
   if (typeof require !== 'undefined' && require !== null) {
-    if (module && module.exports) { //Check if the environment is Node.js
+    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') { //Check if the environment is Node.js
       hookMoment(require('moment')); //if it is, we have to require it different (without the surrounding Array)
     } else {
       require(['moment'], function (moment) {
