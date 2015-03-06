@@ -1,7 +1,7 @@
 {
   "name": "moment-jdateformatparser",
   "description": "Translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "authors": [
     "Martin Groller <madmg82@gmail.com>",
     "Heinz Romirer <h.romirer@gmail.com>"
