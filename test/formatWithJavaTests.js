@@ -10,6 +10,7 @@ test("Date checks", function () {
 
   equal(moment("2013-07-04 14:30").formatWithJDF("yyyy"), "2013", "Check just the year with 4 digits");
   equal(moment("2013-07-04 14:30").formatWithJDF("yy"), "13", "Check just the year with 2 digits");
+  equal(moment("2013-07-04 14:30").formatWithJDF("y"), "2013", "Check just the year with 1 digit resolves to 4 digits");
 
   equal(moment("2013-07-04 14:30").formatWithJDF("M"), "7", "Check just the month");
   equal(moment("2013-07-04 14:30").formatWithJDF("MM"), "07", "Check just the month with leading zero");

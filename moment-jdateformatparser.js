@@ -34,6 +34,7 @@
       javaFormatMapping = {
         d: 'D',
         dd: 'DD',
+        y: 'YYYY',
         yy: 'YY',
         yyyy: 'YYYY',
         a: 'a',

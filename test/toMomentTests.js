@@ -9,6 +9,7 @@ test("Date checks", function () {
 
   equal(moment().toMomentFormatString("yyyy"), "YYYY", "Check just the year with 4 digits");
   equal(moment().toMomentFormatString("yy"), "YY", "Check just the year with 2 digits");
+  equal(moment().toMomentFormatString("y"), "YYYY", "Check just the year with 1 digit resolves to year with 4 digits");
 
   equal(moment().toMomentFormatString("M"), "M", "Check just the month");
   equal(moment().toMomentFormatString("MM"), "MM", "Check just the month with leading zero");
