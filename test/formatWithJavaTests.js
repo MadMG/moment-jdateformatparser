@@ -3,12 +3,15 @@ module("From Java Format Tests");
 test("Date checks", function () {
   equal(moment("2013-12-24 14:30").formatWithJDF("dd."), "24.", "Check day");
   equal(moment("2013-12-24 14:30").formatWithJDF("dd.MM."), "24.12.", "Check day and Month");
+
   equal(moment("2013-12-24 14:30").formatWithJDF("dd.MM.yyyy"), "24.12.2013", "Check date");
+  equal(moment("2013-12-24 14:30").formatWithJDF("dd.MM.yyy"), "24.12.2013", "Check 3-digit date");
 
   equal(moment("2013-12-24 14:30").formatWithJDF("d.M.yyyy"), "24.12.2013", "Check date single day and month");
   equal(moment("2013-07-04 14:30").formatWithJDF("d.M.yyyy"), "4.7.2013", "Check date single day and month");
 
   equal(moment("2013-07-04 14:30").formatWithJDF("yyyy"), "2013", "Check just the year with 4 digits");
+  equal(moment("2013-07-04 14:30").formatWithJDF("yyy"), "2013", "Check just the year with 3 digits resolving to literal year (4 digits)");
   equal(moment("2013-07-04 14:30").formatWithJDF("yy"), "13", "Check just the year with 2 digits");
   equal(moment("2013-07-04 14:30").formatWithJDF("y"), "2013", "Check just the year with 1 digit resolves to 4 digits");
 
