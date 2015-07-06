@@ -1,6 +1,6 @@
 {
   "name": "moment-jdateformatparser",
-  "version": "0.1.9",
+  "version": "1.0.0",
   "description": "Translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.",
   "homepage": "https://github.com/MadMG/moment-jdateformatparser",
   "scripts": {
