@@ -53,7 +53,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('minify', ['uglify']);
-
-  grunt.registerTask('default', ['qunit']);
+  grunt.registerTask('test', ['jshint', 'qunit']);
+  grunt.registerTask('default', ['test', 'minify']);
 
 };

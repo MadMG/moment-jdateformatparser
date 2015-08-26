@@ -14,6 +14,7 @@
   "browser": true,
   "evil": false,
   "globals": {
+    "define": true,
     "module": true,
     "require": true,
     "test": true,
