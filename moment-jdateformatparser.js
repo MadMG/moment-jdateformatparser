@@ -163,17 +163,19 @@
     }
   }
 
-  if (typeof this.moment === 'undefined' && typeof require !== 'undefined' && require !== null) {
-    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') { //Check if the environment is Node.js
-      hookMoment(require('moment')); //if it is, we have to require it different (without the surrounding Array)
-    } else {
-      require(['moment'], function (moment) {
-        hookMoment(moment);
-      });
-    }
-  } else {
-    hookMoment(this.moment);
+  if (typeof require === "function") {
+      try { moment = require('moment'); }
+      catch (e) {}
   }
+
+  if (!moment && root.moment) {
+      moment = root.moment;
+  }
+
+  if (!moment) {
+      throw "Moment JDateFormatParser cannot find Moment.js";
+  }
+  hookMoment(moment);
 
 
   /**
