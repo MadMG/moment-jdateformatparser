@@ -3,3 +3,6 @@
 .idea
 node_modules
 bower_components
+
+moment-jdateformatparser.umd.js
+moment-jdateformatparser.min.js
