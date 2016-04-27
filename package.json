@@ -1,10 +1,12 @@
 {
   "name": "moment-jdateformatparser",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Translates the `java.text.SimpleDateFormat` date format to the `moment.js` date format.",
   "homepage": "https://github.com/MadMG/moment-jdateformatparser",
   "scripts": {
-    "test": "grunt qunit"
+    "build": "grunt build",
+    "test": "grunt test",
+    "prepublish": "npm run build"
   },
   "authors": [
     "Martin Groller <madmg82@gmail.com>",
@@ -19,7 +21,8 @@
     "time",
     "parse"
   ],
-  "main": "moment-jdateformatparser",
+  "main": "moment-jdateformatparser.umd.js",
+  "jsnext:main": "moment-jdateformatparser.js",
   "engines": {},
   "repository": {
     "type": "git",
@@ -28,12 +31,11 @@
   "bugs": {
     "url": "https://github.com/MadMG/moment-jdateformatparser/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
   "dependencies": {
+    "babel-plugin-transform-es2015-modules-umd": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "grunt-babel": "^6.0.0",
     "moment": ">=1.5.0"
   },
   "devDependencies": {

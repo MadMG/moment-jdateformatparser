@@ -1,190 +1,87 @@
-/**
- *
- */
-(function () {
+export class MomentJDateFormatParser {
+  constructor(moment) {
+    this.moment = moment;
+
+    /**
+     * The internal **Java** date formats cache.
+     *
+     * @property javaDateFormats
+     * @type {Object}
+     */
+    this.javaDateFormats = {};
+
+    /**
+     * The internal **moment.js** date formats cache.
+     *
+     * @property momentDateFormats
+     * @type {Object}
+     */
+    this.momentDateFormats = {};
+  }
+
   /**
-   * The **moment.js** library.
+   * The instance of **Moment** to use..
    *
    * @property moment
    * @type {Object}
    */
-  var moment,
-      /**
-       * The internal **Java** date formats cache.
-       *
-       * @property javaDateFormats
-       * @type {Object}
-       */
-      javaDateFormats = {},
-
-      /**
-       * The internal **moment.js** date formats cache.
-       *
-       * @property momentDateFormats
-       * @type {Object}
-       */
-      momentDateFormats = {},
-
-      /**
-       * The format pattern mapping from Java format to momentjs.
-       *
-       * @property javaFormatMapping
-       * @type {Object}
-       */
-      javaFormatMapping = {
-        d: 'D',
-        dd: 'DD',
-        y: 'YYYY',
-        yy: 'YY',
-        yyy: 'YYYY',
-        yyyy: 'YYYY',
-        a: 'a',
-        A: 'A',
-        M: 'M',
-        MM: 'MM',
-        MMM: 'MMM',
-        MMMM: 'MMMM',
-        h: 'h',
-        hh: 'hh',
-        H: 'H',
-        HH: 'HH',
-        m: 'm',
-        mm: 'mm',
-        s: 's',
-        ss: 'ss',
-        S: 'SSS',
-        SS: 'SSS',
-        SSS: 'SSS',
-        E: 'ddd',
-        EE: 'ddd',
-        EEE: 'ddd',
-        EEEE: 'dddd',
-        EEEEE: 'dddd',
-        EEEEEE: 'dddd',
-        D: 'DDD',
-        w: 'W',
-        ww: 'WW',
-        z: 'ZZ',
-        zzzz: 'Z',
-        Z: 'ZZ',
-        X: 'ZZ',
-        XX: 'ZZ',
-        XXX: 'Z',
-        u: 'E'
-      },
-
-      /**
-       * The format pattern mapping from Java format to momentjs.
-       *
-       * @property momentFormatMapping
-       * @type {Object}
-       */
-      momentFormatMapping = {
-        D: 'd',
-        DD: 'dd',
-        YY: 'yy',
-        YYY: 'yyyy',
-        YYYY: 'yyyy',
-        a: 'a',
-        A: 'A',
-        M: 'M',
-        MM: 'MM',
-        MMM: 'MMM',
-        MMMM: 'MMMM',
-        h: 'h',
-        hh: 'hh',
-        H: 'H',
-        HH: 'HH',
-        m: 'm',
-        mm: 'mm',
-        s: 's',
-        ss: 'ss',
-        S: 'S',
-        SS: 'S',
-        SSS: 'S',
-        ddd: 'E',
-        dddd: 'EEEE',
-        DDD: 'D',
-        W: 'w',
-        WW: 'ww',
-        ZZ: 'z',
-        Z: 'XXX',
-        E: 'u'
-      };
-
-  function hookMoment (moment) {
-    // register as private function (good for testing purposes)
-    moment.fn.__translateJavaFormat = translateFormat;
-
-    /**
-     * Translates the momentjs format String to a java date format String.
-     *
-     * @function toJDFString
-     * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
-     */
-    moment.fn.toMomentFormatString = function (formatString) {
-      if (!javaDateFormats[formatString]) {
-        javaDateFormats[formatString] = translateFormat(formatString, javaFormatMapping);
-      }
-      return javaDateFormats[formatString];
-    };
-
-    /**
-     * Format the moment with the given java date format String.
-     *
-     * @function formatWithJDF
-     * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
-     */
-    moment.fn.formatWithJDF = function (formatString) {
-      return this.format(this.toMomentFormatString(formatString));
-    };
-
-    /**
-     * Translates the momentjs format string to a java date format string
-     *
-     * @function toJDFString
-     * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
-     */
-    moment.fn.toJDFString = function (formatString) {
-      if (!momentDateFormats[formatString]) {
-        momentDateFormats[formatString] = translateFormat(formatString, momentFormatMapping);
-      }
-      return momentDateFormats[formatString];
-    };
-
-
-    if (typeof module !== 'undefined' && module !== null) {
-      module.exports = moment;
-    } else {
-      this.moment = moment;
-    }
+  get moment() {
+    return this._moment;
   }
 
-  if (typeof this.moment === 'undefined' && typeof require !== 'undefined' && require !== null) {
-    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') { //Check if the environment is Node.js
-      hookMoment(require('moment')); //if it is, we have to require it different (without the surrounding Array)
-    } else {
-      require(['moment'], function (moment) {
-        hookMoment(moment);
-      });
-    }
-  } else {
-    hookMoment(this.moment);
+  set moment(aMoment) {
+    this._moment = aMoment;
   }
 
+  /**
+   * Translates the momentjs format String to a java date format String.
+   *
+   * @function toJDFString
+   * @param {String}  formatString    The format String to be translated.
+   * @returns {String}
+   */
+  toMomentFormatString(formatString) {
+    if (!this.javaDateFormats[formatString]) {
+      this.javaDateFormats[formatString] = this._translateFormat(formatString, MomentJDateFormatParser.javaFormatMapping);
+    }
+    return this.javaDateFormats[formatString];
+  };
+
+  /**
+   * Format the moment with the given java date format String.
+   *
+   * @function formatWithJDF
+   * @param {String}  formatString    The format String to be translated.
+   * @returns {String}
+   */
+  formatWithJDF(formatString) {
+    return this.moment.format(this.toMomentFormatString(formatString));
+  }
+
+  /**
+   * Translates the momentjs format string to a java date format string
+   *
+   * @function toJDFString
+   * @param {String}  formatString    The format String to be translated.
+   * @returns {String}
+   */
+  toJDFString(formatString) {
+    if (!this.momentDateFormats[formatString]) {
+      this.momentDateFormats[formatString] = this._translateFormat(formatString, MomentJDateFormatParser.momentFormatMapping);
+    }
+    return this.momentDateFormats[formatString];
+  }
 
   /**
    * Translates the java date format String to a momentjs format String.
    *
+   * @private
    * @function translateFormat
    * @param {String}  formatString    The unmodified format string
    * @param {Object}  mapping         The date format mapping object
    * @returns {String}
    */
-  var translateFormat = function (formatString, mapping) {
+  _translateFormat(formatString, mapping) {
     var len = formatString.length,
         i = 0,
         beginIndex = -1,
@@ -197,7 +94,7 @@
 
       if (lastChar === null || lastChar !== currentChar) {
         // change detected
-        resultString = _appendMappedString(formatString, mapping, beginIndex, i, resultString);
+        resultString = this._appendMappedString(formatString, mapping, beginIndex, i, resultString);
 
         beginIndex = i;
       }
@@ -205,7 +102,7 @@
       lastChar = currentChar;
     }
 
-    return _appendMappedString(formatString, mapping, beginIndex, i, resultString);
+    return this._appendMappedString(formatString, mapping, beginIndex, i, resultString);
   };
 
   /**
@@ -220,7 +117,7 @@
    * @returns {String}
    * @private
    */
-  var _appendMappedString = function (formatString, mapping, beginIndex, currentIndex, resultString) {
+  _appendMappedString(formatString, mapping, beginIndex, currentIndex, resultString) {
     var tempString;
 
     if (beginIndex !== -1) {
@@ -233,5 +130,95 @@
     }
     return resultString;
   };
+}
 
-}).call(this);
+/**
+ * The format pattern mapping from Java format to momentjs.
+ *
+ * @static
+ * @property javaFormatMapping
+ * @type {Object}
+ */
+MomentJDateFormatParser.javaFormatMapping = {
+  d: 'D',
+  dd: 'DD',
+  y: 'YYYY',
+  yy: 'YY',
+  yyy: 'YYYY',
+  yyyy: 'YYYY',
+  a: 'a',
+  A: 'A',
+  M: 'M',
+  MM: 'MM',
+  MMM: 'MMM',
+  MMMM: 'MMMM',
+  h: 'h',
+  hh: 'hh',
+  H: 'H',
+  HH: 'HH',
+  m: 'm',
+  mm: 'mm',
+  s: 's',
+  ss: 'ss',
+  S: 'SSS',
+  SS: 'SSS',
+  SSS: 'SSS',
+  E: 'ddd',
+  EE: 'ddd',
+  EEE: 'ddd',
+  EEEE: 'dddd',
+  EEEEE: 'dddd',
+  EEEEEE: 'dddd',
+  D: 'DDD',
+  w: 'W',
+  ww: 'WW',
+  z: 'ZZ',
+  zzzz: 'Z',
+  Z: 'ZZ',
+  X: 'ZZ',
+  XX: 'ZZ',
+  XXX: 'Z',
+  u: 'E'
+};
+
+/**
+ * The format pattern mapping from Java format to momentjs.
+ *
+ * @static
+ * @property momentFormatMapping
+ * @type {Object}
+ */
+MomentJDateFormatParser.momentFormatMapping = {
+  D: 'd',
+  DD: 'dd',
+  YY: 'yy',
+  YYY: 'yyyy',
+  YYYY: 'yyyy',
+  a: 'a',
+  A: 'A',
+  M: 'M',
+  MM: 'MM',
+  MMM: 'MMM',
+  MMMM: 'MMMM',
+  h: 'h',
+  hh: 'hh',
+  H: 'H',
+  HH: 'HH',
+  m: 'm',
+  mm: 'mm',
+  s: 's',
+  ss: 'ss',
+  S: 'S',
+  SS: 'S',
+  SSS: 'S',
+  ddd: 'E',
+  dddd: 'EEEE',
+  DDD: 'D',
+  W: 'w',
+  WW: 'ww',
+  ZZ: 'z',
+  Z: 'XXX',
+  E: 'u'
+};
+
+export default MomentJDateFormatParser;
