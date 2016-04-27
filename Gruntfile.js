@@ -3,6 +3,14 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
+    babel: {
+        dist: {
+            files: {
+                'moment-jdateformatparser.umd.js': 'moment-jdateformatparser.js'
+            }
+        }
+    },
+
     pkg: grunt.file.readJSON('package.json'),
 
     /*
@@ -28,7 +36,7 @@ module.exports = function (grunt) {
       target: {
         files: [
           {
-            src: 'moment-jdateformatparser.js',
+            src: 'moment-jdateformatparser.umd.js',
             dest: 'moment-jdateformatparser.min.js'
           }
         ]
@@ -42,10 +50,13 @@ module.exports = function (grunt) {
   });
 
 
+  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  grunt.registerTask('build', ['babel', 'minify']);
 
   grunt.registerTask('lint_tasks', ['jshint']);
   grunt.registerTask('lint', 'JavaScript Code Linting', function () {
@@ -54,6 +65,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('minify', ['uglify']);
 
-  grunt.registerTask('default', ['qunit']);
+  grunt.registerTask('test', ['build', 'qunit']);
+
+  grunt.registerTask('default', ['test']);
 
 };
