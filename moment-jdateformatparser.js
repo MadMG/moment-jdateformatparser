@@ -1,11 +1,5 @@
 export class MomentJDateFormatParser {
   constructor(moment) {
-    /**
-     * The instance of **Moment** to use..
-     *
-     * @property moment
-     * @type {Object}
-     */
     this.moment = moment;
 
     /**
@@ -23,6 +17,20 @@ export class MomentJDateFormatParser {
      * @type {Object}
      */
     this.momentDateFormats = {};
+  }
+
+  /**
+   * The instance of **Moment** to use..
+   *
+   * @property moment
+   * @type {Object}
+   */
+  get moment() {
+    return this._moment;
+  }
+
+  set moment(aMoment) {
+    this._moment = aMoment;
   }
 
   /**
