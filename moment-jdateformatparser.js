@@ -125,15 +125,11 @@
          */
         moment.fn.toMomentFormatString = function (formatString) {
             if (!javaDateFormats[formatString]) {
-                // javaDateFormats[formatString] = translateFormat(formatString, javaFormatMapping);
                 var mapped = "";
-
                 var regexp = /[^']+|('[^']*')/g;
 
                 while ((part = regexp.exec(formatString))) {
-
                     part = part[0];
-
                     if (part.match(/'.?'/)) {
                         mapped += "[" + part.substring(1, part.length - 1) + "]";
                     }
@@ -141,7 +137,7 @@
                         mapped += translateFormat(part, javaFormatMapping);
                     }
                 }
-
+                
                 javaDateFormats[formatString] = mapped;
             }
             return javaDateFormats[formatString];
