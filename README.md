@@ -1,4 +1,4 @@
-#moment-jdateformatparser
+# moment-jdateformatparser
 [![NPM](https://nodei.co/npm/moment-jdateformatparser.png)](https://nodei.co/npm/moment-jdateformatparser/)
 [![Build Status](https://travis-ci.org/MadMG/moment-jdateformatparser.svg?branch=master)](https://travis-ci.org/MadMG/moment-jdateformatparser)
 
