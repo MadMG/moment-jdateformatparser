@@ -127,6 +127,7 @@
       if (!javaDateFormats[formatString]) {
           var mapped = "";
           var regexp = /[^']+|('[^']*')/g;
+          var part = '';
 
           while ((part = regexp.exec(formatString))) {
               part = part[0];
