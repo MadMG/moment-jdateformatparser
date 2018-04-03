@@ -86,7 +86,7 @@
         YYY: 'yyyy',
         YYYY: 'yyyy',
         a: 'a',
-        A: 'A',
+        A: 'a',
         M: 'M',
         MM: 'MM',
         MMM: 'MMM',

@@ -21,10 +21,10 @@ test("Hour and minute checks", function () {
   equal(moment().toJDFString("HH:mm"), "HH:mm", "Check 24h time");
   equal(moment().toJDFString("hh:mm"), "hh:mm", "Check 12h time");
 
-  equal(moment().toJDFString("hh:mm A"), "hh:mm A", "Check am/pm upper case");
+  equal(moment().toJDFString("hh:mm A"), "hh:mm a", "Check am/pm upper case");
   equal(moment().toJDFString("hh:mm a"), "hh:mm a", "Check am/pm lower case");
 
-  equal(moment().toJDFString("h:mm A"), "h:mm A", "Check am/pm upper case single hour");
+  equal(moment().toJDFString("h:mm A"), "h:mm a", "Check am/pm upper case single hour");
   equal(moment().toJDFString("h:mm a"), "h:mm a", "Check am/pm lower case single hour");
 
   equal(moment().toJDFString("m"), "m", "Check single minute");
