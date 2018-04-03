@@ -173,7 +173,7 @@
     if (typeof module !== 'undefined' && module !== null) {
       module.exports = moment;
     } else {
-      this.moment = moment;
+      window.moment = moment;
     }
   }
 
