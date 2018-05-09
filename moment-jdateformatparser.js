@@ -178,13 +178,7 @@
   }
 
   if (!this.moment && typeof require === 'function') {
-    if (module && module.exports) { //Check if the environment is Node.js
-      hookMoment(require('moment')); //if it is, we have to require it different (without the surrounding Array)
-    } else {
-      require(['moment'], function (moment) {
-        hookMoment(moment);
-      });
-    }
+    hookMoment(require('moment'));
   } else {
     hookMoment(this.moment);
   }
