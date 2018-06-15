@@ -25,7 +25,7 @@
     "tests"
   ],
   "devDependencies": {
-    "momentjs": "~2.4.0",
+    "momentjs": "~2.9.0",
     "jquery": "~2.0.3",
     "qunit": "~1.12.0"
   }
