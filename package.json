@@ -33,9 +33,6 @@
       "type": "MIT"
     }
   ],
-  "dependencies": {
-    "moment": "~2.9.0"
-  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.1",
