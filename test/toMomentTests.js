@@ -68,3 +68,9 @@ test("Timezone checks", function () {
   equal(moment().toMomentFormatString("XX"), "ZZ", "Check week in year with leading zero");
   equal(moment().toMomentFormatString("XXX"), "Z", "Check week in month");
 });
+
+test("Escape character checks", function () {
+  equal(moment().toMomentFormatString("'GMT'"), "[GMT]", "Check escape chars");
+  equal(moment().toMomentFormatString("HH:mm 'GMT'"), "HH:mm [GMT]", "Check escape chars after");
+  equal(moment().toMomentFormatString("'Time:' HH:mm 'GMT'"), "[Time:] HH:mm [GMT]", "Check escape chars before and after");
+});
