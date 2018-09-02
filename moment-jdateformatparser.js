@@ -213,7 +213,7 @@
         while ((part = regexp.exec(formatString))) {
           part = part[0];
 
-          if (part.match(/'.?'/)) {
+          if (part.match(/'(.*?)'/)) {
             mapped += "[" + part.substring(1, part.length - 1) + "]";
           } else {
             mapped += translateFormat(part, javaFormatMapping);

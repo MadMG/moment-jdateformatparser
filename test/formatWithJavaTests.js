@@ -76,3 +76,9 @@ test("Timezone checks", function () {
   equal(moment("2013-01-10 14:30").utc().formatWithJDF("XX"), "+0000", "Check week in year with leading zero");
   equal(moment("2013-01-10 14:30").utc().formatWithJDF("XXX"), "+00:00", "Check week in month");
 });
+
+test("Escape character checks", function () {
+  equal(moment("2013-12-24 14:30").formatWithJDF("'GMT'"), "GMT", "Check escape chars");
+  equal(moment("2013-12-24 14:30").formatWithJDF("HH:mm 'GMT'"), "14:30 GMT", "Check escape chars after");
+  equal(moment("2013-12-24 14:30").formatWithJDF("'Time:' HH:mm 'GMT'"), "Time: 14:30 GMT", "Check escape chars before and after");
+});
